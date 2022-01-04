@@ -37,6 +37,13 @@ function Checkout(props) {
 		if (!formIsValid) {
 			return;
 		}
+
+		props.onCheckout({
+			name: enteredName,
+			street: enteredStreet,
+			city: enteredCity,
+			postalCode: enteredPostalCode,
+		});
 	};
 
 	const nameControlClass = `${classes.control} ${formsInputValidity.name ? "" : classes.invalid}`;
@@ -45,22 +52,22 @@ function Checkout(props) {
 	const cityControlClass = `${classes.control} ${formsInputValidity.city ? "" : classes.invalid}`;
 	return (
 		<form className={classes.form} onSubmit={confirmHandler}>
-			<div className={classes.control}>
+			<div className={nameControlClass}>
 				<label htmlFor="name">Your Name</label>
 				<input type="text" id="name" ref={nameRef} />
 				{!formsInputValidity.name && <p>Enter a valid Name</p>}
 			</div>
-			<div className={classes.control}>
+			<div className={streetControlClass}>
 				<label htmlFor="street">Street</label>
 				<input type="text" id="street" ref={streetRef} />
 				{!formsInputValidity.street && <p>Enter a valid street Name</p>}
 			</div>
-			<div className={classes.control}>
+			<div className={postalCodeControlClass}>
 				<label htmlFor="postal">Postal Code</label>
 				<input type="text" id="postal" ref={postalCodeRef} />
 				{!formsInputValidity.postalCode && <p>Enter a valid postal code</p>}
 			</div>
-			<div className={classes.control}>
+			<div className={cityControlClass}>
 				<label htmlFor="city">City</label>
 				<input type="text" id="city" ref={cityRef} />
 				{!formsInputValidity.city && <p>Enter a valid city name</p>}
